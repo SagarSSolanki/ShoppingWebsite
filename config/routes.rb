@@ -8,4 +8,8 @@ Rails.application.routes.draw do
   post "sign_in", to: "sessions#create"
 
   delete "logout", to: "sessions#destroy"
+
+  resources :users do
+    resources :addresses 
+  end
 end
