@@ -3,30 +3,30 @@
 <%= form_with model: @user, url: sign_up_path do |form| %>
 
 <div class="mb-3">
-    <%= form.label :email %><br>
-    <%= form.text_field :email, class: "form-control", placeholder: "abc@xyz.com" %>
-    <% @user.errors.full_messages_for(:email).each do |message| %>
-        <div><%= message %></div>
-    <% end %>
+  <%= form.label :email %><br>
+  <%= form.text_field :email, class: "form-control", placeholder: "abc@xyz.com" %>
+  <% @user.errors.full_messages_for(:email).each do |message| %>
+    <div><%= message %></div>
+  <% end %>
 </div>
 <br>
 <div class="mb-3">
-    <%= form.label :password %><br>
-    <%= form.password_field :password, class: "form-control", placeholder: "password" %>
-    <% @user.errors.full_messages_for(:password).each do |message| %>
-        <div><%= message %></div>
-    <% end %>
+  <%= form.label :password %><br>
+  <%= form.password_field :password, class: "form-control", placeholder: "password" %>
+  <% @user.errors.full_messages_for(:password).each do |message| %>
+    <div><%= message %></div>
+<% end %>
 </div>
 <br>
 <div class="mb-3">
-    <%= form.label "Confirm Password" %><br>
-    <%= form.password_field :password_confirmation, class: "form-control", placeholder: "password" %>
-    <% @user.errors.full_messages_for(:password_confirmation).each do |message| %>
-        <div><%= message %></div>
-    <% end %>
+  <%= form.label "Confirm Password" %><br>
+  <%= form.password_field :password_confirmation, class: "form-control", placeholder: "password" %>
+  <% @user.errors.full_messages_for(:password_confirmation).each do |message| %>
+  <div><%= message %></div>
+<% end %>
 </div>
 <br>
 <div class="mb-3">
-    <%= form.submit "Sign Up", class: "btn btn-primary"%>
+  <%= form.submit "Sign Up", class: "btn btn-primary"%>
 </div>
 <% end %>

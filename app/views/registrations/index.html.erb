@@ -1,6 +1,6 @@
 <h1>Welcome Sagar</h1>
 
 <% if @user %>
-    Logged in as: <%= @user.email %>
-    <%= button_to "Logout", logout_path, method: :delete %>
+  Logged in as: <%= @user.email %>
+  <%= button_to "Logout", logout_path, method: :delete %>
 <% end %>
