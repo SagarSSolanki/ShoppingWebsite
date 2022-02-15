@@ -3,6 +3,15 @@
 <% if @user %>
     Logged in as: <%= @user.email %>
 
+    <h2>Addresses</h2>
+    <% @user.addresses.each do |address| %>
+      <p>
+        <strong>Area:</strong> <%= address.area %>
+        
+        <strong>City:</strong> <%= address.city %>
+      </p>
+    <% end %>
+
     <h2>Add Address:</h2>
     <%= form_with model: [ @user, @user.addresses.build ] do |form| %>
         <p>
