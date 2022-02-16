@@ -1,8 +1,6 @@
 class RegistrationsController < ApplicationController
   def index
-    if session[:user_id]
-      @user = User.find_by(id: session[:user_id])
-    end
+    @user = User.find_by(id: session[:user_id]) if session[:user_id]
   end
  
   def new
@@ -14,13 +12,14 @@ class RegistrationsController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id  
-      redirect_to root_path, notice: "Successful"
+      redirect_to root_path, notice: "Successfully Created Account"
     else
       render :new
     end
   end
 
   private
+  
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
   end    
