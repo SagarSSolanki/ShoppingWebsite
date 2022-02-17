@@ -1,6 +1,6 @@
 class AddressesController < ApplicationController
   def index 
-    @address =Address.new 
+    @address = Address.new 
   end
 
   def edit
