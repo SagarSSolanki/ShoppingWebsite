@@ -1,39 +1,32 @@
-<h1>Welcome Sagar</h1>
+<h1>Welcome</h1>
 
 <% if @user %>
-    Logged in as: <%= @user.email %>
+  <h3> Logged in as: <%= @user.email %> </h3>
+  
+  <br>
+  <h2>Addresses</h2>
+  <% @user.addresses.each do |address| %>
+    <p>
+    <strong>Area:</strong> <%= address.area %>  
+    <strong>City:</strong> <%= address.city %>
+    <strong>State:</strong> <%= address.state %>
+    <strong>Pincode:</strong> <%= address.pincode %>
 
-    <h2>Addresses</h2>
-    <% @user.addresses.each do |address| %>
-      <p>
-        <strong>Area:</strong> <%= address.area %>
-        
-        <strong>City:</strong> <%= address.city %>
-      </p>
-    <% end %>
+    <%= button_to "Delete Address", address_path(id: address.id), method: :delete %>
+    <br>
+    <%= button_to "Edit Address", edit_address_path(id: address.id), method: :get %>
+    </p>
+  <% end %>
 
-    <h2>Add Address:</h2>
-    <%= form_with model: [ @user, @user.addresses.build ] do |form| %>
-        <p>
-          <%= form.label :area %><br>
-          <%= form.text_field :area %>
-        </p>
-        <p>
-          <%= form.label :city %><br>
-          <%= form.text_field :city %>
-        </p>
-        <p>
-          <%= form.label :state %><br>
-          <%= form.text_field :state %>
-        </p>
-        <p>
-          <%= form.label :pincode %><br>
-          <%= form.number_field :pincode %>
-        </p>
-        <p>
-          <%= form.submit %>
-        </p>
-      <% end %>
-
-    <%= button_to "Logout", logout_path, method: :delete %>
+  <br>
+  <%= button_to "Add New Address", addresses_path, method: :get %>
+  
+  <br>
+  <%= button_to "Logout", logout_path, method: :delete %>
+<% else %>
+  <br>
+  <%= button_to "Sign In", sign_in_path, method: :get, class: "btn btn-primary" %>
+  
+  <br>
+  <%= button_to "Sign Up", sign_up_path, method: :get %>
 <% end %>
