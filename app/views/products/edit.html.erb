@@ -1,0 +1,19 @@
+<h2>Edit Product:</h2>
+
+<%= form_with model: @product do |form| %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :price %><br>
+    <%= form.number_field :price %>
+  </p>
+  <p>
+    <%= form.label :stock %><br>
+    <%= form.number_field :stock %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

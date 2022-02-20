@@ -1,8 +1,7 @@
 <ul>
   <% @products.each do |product| %>
     <li>
-      <h3><%= product.name %></h3>
-      price: <%= product.price %>
+      <%= button_to product.name, product_path(id: product.id), method: :get %>
     </li>
   <% end %>
-<ul>
+</ul>

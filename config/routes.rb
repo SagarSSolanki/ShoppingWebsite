@@ -11,5 +11,5 @@ Rails.application.routes.draw do
 
   resources :addresses, only: %i(create edit update index destroy)
 
-  resources :products, only: %i(index new create)
+  resources :products, only: %i(index show edit update new create destroy)
 end
