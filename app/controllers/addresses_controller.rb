@@ -4,14 +4,14 @@ class AddressesController < ApplicationController
   end
 
   def edit
-    @address = Address.find(params[:id])
+    @address = Address.find_by(id: params[:id])
   end
 
   def update
-    @address = Address.find(params[:id])
+    @address = Address.find_by(id: params[:id])
 
     if @address.update(address_params)
-      redirect_to root_path
+      redirect_to root_path, notice: "Successfully Updated Address"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -19,8 +19,14 @@ class AddressesController < ApplicationController
 
   def create
     @user = User.find_by(id: session[:user_id])
-    @address = @user.addresses.create(address_params)
-    redirect_to root_path(@user)
+    @address = @user.addresses.new(address_params)
+
+    if @address.save
+      redirect_to root_path(@user), notice: "Successfully Added Address"
+    else
+      render :index, status: :unprocessable_entity
+    end
+    
   end
   
   def destroy
