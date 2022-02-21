@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :is_loggedin
+  
   def index
     @products = Product.all
     @user = current_user
