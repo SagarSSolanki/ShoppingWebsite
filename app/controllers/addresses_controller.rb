@@ -5,6 +5,9 @@ class AddressesController < ApplicationController
 
   def edit
     @address = Address.find_by(id: params[:id])
+    if @address == nil
+      redirect_to root_path, notice: "Address Not Found!"
+    end
   end
 
   def update
@@ -33,7 +36,7 @@ class AddressesController < ApplicationController
     @address = Address.find_by(id: params[:id])
     @address.destroy 
 
-    redirect_to root_path
+    redirect_to root_path, notice: "1 Address Deleted!"
   end
 
   private
