@@ -5,9 +5,7 @@ class AddressesController < ApplicationController
 
   def edit
     @address = Address.find_by(id: params[:id])
-    if @address == nil
-      redirect_to root_path, notice: "Address Not Found!"
-    end
+    redirect_to root_path, notice: "Address Not Found!" if @address.blank?
   end
 
   def update
