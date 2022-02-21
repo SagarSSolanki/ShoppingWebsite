@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find_by(id: params[:id])
+    redirect_to products_path, notice: "Product Not Found!" if @product.blank?
     @user = current_user
   end
 
@@ -17,31 +18,32 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
-      redirect_to products_path
+      redirect_to products_path, notice: "Successfully Added Product"
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    @product = Product.find(params[:id])
+    @product = Product.find_by(id: params[:id])
+    redirect_to products_path, notice: "Product Not Found!" if @product.blank?
   end
 
   def update
-    @product = Product.find(params[:id])
+    @product = Product.find_by(id: params[:id])
 
     if @product.update(product_params)
-      redirect_to products_path
+      redirect_to product_path(id: @product.id), notice: "Successfully Updated Product"
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @product = Product.find(params[:id])
+    @product = Product.find_by(id: params[:id])
     @product.destroy
 
-    redirect_to products_path, status: :see_other
+    redirect_to products_path, notice: "1 Product Deleted"
   end
 
   private
