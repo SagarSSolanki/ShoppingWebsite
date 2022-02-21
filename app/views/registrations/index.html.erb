@@ -2,11 +2,11 @@
 <%= flash[:notice] %>
 
 <% if @user %>
-  <h3> Logged in as: <%= @user.email %> </h3>
+  <h3> Logged in as: <%= current_user.email %> </h3>
   
   <br>
   <h2>Addresses</h2>
-  <% @user.addresses.each do |address| %>
+  <% current_user.addresses.each do |address| %>
     <p>
     <strong>Area:</strong> <%= address.area %>  
     <strong>City:</strong> <%= address.city %>
