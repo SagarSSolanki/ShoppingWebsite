@@ -25,12 +25,10 @@ class AddressesController < ApplicationController
     else
       render :index, status: :unprocessable_entity
     end
-    
   end
   
   def destroy
     @address.destroy 
-
     redirect_to root_path, notice: "1 Address Deleted!"
   end
 

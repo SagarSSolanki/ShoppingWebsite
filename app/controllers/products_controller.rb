@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :is_loggedin
+  before_action :is_loggedin, only: %i(edit update destroy)
+  before_action :is_admin, only: %i(edit update destroy)
+  before_action :find_product, only: %i(show edit update destroy)
   
   def index
     @products = Product.all
@@ -7,7 +9,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find_by(id: params[:id])
     redirect_to products_path, notice: "Product Not Found!" if @product.blank?
     @user = current_user
   end
@@ -27,13 +28,10 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find_by(id: params[:id])
     redirect_to products_path, notice: "Product Not Found!" if @product.blank?
   end
 
   def update
-    @product = Product.find_by(id: params[:id])
-
     if @product.update(product_params)
       redirect_to product_path(id: @product.id), notice: "Successfully Updated Product"
     else
@@ -42,7 +40,6 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find_by(id: params[:id])
     @product.destroy
 
     redirect_to products_path, notice: "1 Product Deleted"
@@ -52,5 +49,13 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :price, :stock, :category_id)
+  end
+
+  def is_admin
+    redirect_to root_path, notice: "You dont have admin rights" if current_user.email != "sagar@gmail.com"
+  end
+
+  def find_product
+    @product = Product.find_by(id: params[:id])
   end
 end

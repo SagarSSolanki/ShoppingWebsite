@@ -7,16 +7,15 @@
   <br>
   <h2>Addresses</h2>
   <% current_user.addresses.each do |address| %>
-    <p>
+    <a>
     <strong>Area:</strong> <%= address.area %>  
     <strong>City:</strong> <%= address.city %>
     <strong>State:</strong> <%= address.state %>
     <strong>Pincode:</strong> <%= address.pincode %>
 
     <%= button_to "Delete Address", address_path(id: address.id), method: :delete %>
-    <br>
     <%= button_to "Edit Address", edit_address_path(id: address.id), method: :get %>
-    </p>
+    </a>
   <% end %>
 
   <br>
