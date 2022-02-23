@@ -25,7 +25,6 @@ class AddressesController < ApplicationController
     else
       render :index, status: :unprocessable_entity
     end
-    
   end
   
   def destroy
