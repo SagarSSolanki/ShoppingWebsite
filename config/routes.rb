@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   post "sign_in", to: "sessions#create"
 
   delete "logout", to: "sessions#destroy"
+
+  resources :addresses, only: %i(create edit update index destroy)
 end
