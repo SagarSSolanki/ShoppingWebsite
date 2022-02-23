@@ -10,8 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2022_02_17_202121) do
 
+=======
+ActiveRecord::Schema.define(version: 2022_02_10_213706) do
+  
+>>>>>>> 2f6376b1181f7ec4ef6a6621b7965f26b1efaf93
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +31,7 @@ ActiveRecord::Schema.define(version: 2022_02_17_202121) do
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
+<<<<<<< HEAD
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -42,6 +48,8 @@ ActiveRecord::Schema.define(version: 2022_02_17_202121) do
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
+=======
+>>>>>>> 2f6376b1181f7ec4ef6a6621b7965f26b1efaf93
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
@@ -50,5 +58,8 @@ ActiveRecord::Schema.define(version: 2022_02_17_202121) do
   end
 
   add_foreign_key "addresses", "users"
+<<<<<<< HEAD
   add_foreign_key "products", "categories"
+=======
+>>>>>>> 2f6376b1181f7ec4ef6a6621b7965f26b1efaf93
 end
