@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
   def show
     redirect_to products_path, notice: "Product Not Found!" if @product.blank?
     @user = current_user
+    @flag = 0 if @product.stock == 0
   end
 
   def new 
@@ -52,7 +53,7 @@ class ProductsController < ApplicationController
   end
 
   def is_admin
-    redirect_to root_path, notice: "You dont have admin rights" if current_user.email != "sagar@gmail.com"
+    redirect_to root_path, notice: "You don't have admin rights" if current_user.email != "sagar@gmail.com"
   end
 
   def find_product
