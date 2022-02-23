@@ -11,7 +11,6 @@ class ProductsController < ApplicationController
   def show
     redirect_to products_path, notice: "Product Not Found!" if @product.blank?
     @user = current_user
-    @flag = 0 if @product.stock == 0
   end
 
   def new 

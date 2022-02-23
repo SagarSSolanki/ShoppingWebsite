@@ -2,7 +2,7 @@
 
 <h3>Price: <%= @product.price %></h3>
 
-<% if @flag == 0%>
+<% if @product.stock == 0%>
   <h3>Out Of Stock</h3>
 <% else %>
   <h3>Only <%= @product.stock %> Left!</h3>
