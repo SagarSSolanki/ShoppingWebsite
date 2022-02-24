@@ -1,0 +1,7 @@
+<ul>
+  <% @products.each do |product| %>
+    <li>
+      <%= button_to product.name, product_path(id: product.id), method: :get %>
+    </li>
+  <% end %>
+</ul>

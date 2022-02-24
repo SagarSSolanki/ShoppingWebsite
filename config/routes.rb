@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   delete "logout", to: "sessions#destroy"
 
   resources :addresses, only: %i(create edit update index destroy)
+
+  resources :products, only: %i(index show edit update new create destroy)
 end

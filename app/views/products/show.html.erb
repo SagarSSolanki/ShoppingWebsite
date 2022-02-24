@@ -1,0 +1,16 @@
+<h1><%= @product.name %></h1>
+
+<h3>Price: <%= @product.price %></h3>
+
+<% if @product.stock == 0%>
+  <h3>Out Of Stock</h3>
+<% else %>
+  <h3>Only <%= @product.stock %> Left!</h3>
+<% end %>
+
+<% if @user %>
+  <% if @user.email == "sagar@gmail.com"%>
+    <%= button_to "Edit Product", edit_product_path, method: :get %>
+    <%= button_to "Delete Product", product_path, method: :delete %>
+  <% end %>
+<% end %>

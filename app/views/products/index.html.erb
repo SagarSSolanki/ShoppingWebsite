@@ -1,0 +1,17 @@
+<h1>Products</h1>
+<%= flash[:notice] %>
+
+<% if @user %>
+  <% if @user.email == "sagar@gmail.com"%>
+    <h3> Welcome Admin</h3>
+    <%= render "products" %>
+    <br>
+    <%= button_to "Add Product", new_product_path, method: :get %>
+
+  <% else %>
+    <%= render "products" %>
+  <% end %>
+  
+<% else %>
+  <%= render "products" %>
+<% end %>

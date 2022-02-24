@@ -29,7 +29,6 @@ class AddressesController < ApplicationController
   
   def destroy
     @address.destroy 
-
     redirect_to root_path, notice: "1 Address Deleted!"
   end
 
