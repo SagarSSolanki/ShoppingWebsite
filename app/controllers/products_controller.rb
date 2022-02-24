@@ -48,11 +48,19 @@ class ProductsController < ApplicationController
   private
 
   def product_params
+<<<<<<< HEAD
     params.require(:product).permit(:name, :price, :stock, :category_id, :image)
   end
 
   def is_admin
     redirect_to root_path, notice: "You dont have admin rights" if current_user.email != "sagar@gmail.com"
+=======
+    params.require(:product).permit(:name, :price, :stock, :category_id)
+  end
+
+  def is_admin
+    redirect_to root_path, notice: "You don't have admin rights" if current_user.email != "sagar@gmail.com"
+>>>>>>> 8432aaba1079322be43561db543662d4a4c97b6d
   end
 
   def find_product

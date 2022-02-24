@@ -7,7 +7,7 @@
   <br>
   <h2>Addresses</h2>
   <% current_user.addresses.each do |address| %>
-    <a>
+    <p>
     <strong>Area:</strong> <%= address.area %>  
     <strong>City:</strong> <%= address.city %>
     <strong>State:</strong> <%= address.state %>
@@ -15,7 +15,7 @@
 
     <%= button_to "Delete Address", address_path(id: address.id), method: :delete %>
     <%= button_to "Edit Address", edit_address_path(id: address.id), method: :get %>
-    </a>
+    </p>
   <% end %>
 
   <br>
