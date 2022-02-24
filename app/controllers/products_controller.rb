@@ -52,7 +52,7 @@ class ProductsController < ApplicationController
   end
 
   def is_admin
-    redirect_to root_path, notice: "You dont have admin rights" if current_user.email != "sagar@gmail.com"
+    redirect_to root_path, notice: "You don't have admin rights" if current_user.email != "sagar@gmail.com"
   end
 
   def find_product
