@@ -2,8 +2,7 @@ class CartitemsController < ApplicationController
   before_action :is_loggedin, only: %i(create)
     
   def create
-    @cartitem = Cartitem.new(params)
-
+    @cartitem = current_user.cart.cartitems.new(cartitem_params)
     if @cartitem.save
       redirect_to carts_path, notice: "Successfully Added Item"
     else
@@ -14,6 +13,6 @@ class CartitemsController < ApplicationController
   private
 
   def cartitem_params
-    params.require(:cartitem).permit(:quantity, :product_id, :cart_id)
+    params.permit(:quantity, :product_id)
   end
 end
