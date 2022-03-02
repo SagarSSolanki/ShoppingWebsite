@@ -1,21 +1,11 @@
 class CartitemsController < ApplicationController
-  before_action :is_loggedin, only: %i(create)
-  after_action :total_update, only: %i(create update destroy)
+  before_action :is_loggedin, only: %i(create update destroy)
     
   def create
-    flag = 0
+    @cartitem = current_user.cart.cartitems.find_or_initialize_by(product_id: params[:product_id])
 
-    current_user.cart.cartitems.each do |item|
-
-      if item.product.id == params[:product_id].to_i
-        flag = 1
-        @cartitem = item
-        break
-      end
-    end
-
-    if flag == 0
-      @cartitem = current_user.cart.cartitems.new(cartitem_params)
+    if @cartitem.quantity == nil
+      @cartitem.attributes = cartitem_params
       @cartitem.save
       redirect_to carts_path, notice: "Successfully Added Item"
 
@@ -30,12 +20,10 @@ class CartitemsController < ApplicationController
 
   def update
     @cartitem = current_user.cart.cartitems.find_by(id: params[:id])
-
-    if @cartitem.quantity+1 <= @cartitem.product.stock
-      @cartitem.update(quantity: @cartitem.quantity + 1)
+    if @cartitem.update(quantity: @cartitem.quantity + 1)
       redirect_to carts_path, notice: "Quantity Increased"
-    else
-      redirect_to carts_path, notice: "No more products left!"
+    else 
+      redirect_to carts_path, notice: @cartitem.errors.messages_for(:quantity)
     end
   end
 
@@ -51,13 +39,4 @@ class CartitemsController < ApplicationController
     params.permit(:quantity, :product_id)
   end
 
-  def total_update
-    sum = 0
-    
-    current_user.cart.cartitems.each do |item|
-      sum = sum + (item.product.price * item.quantity)
-    end
-    @cart = current_user.cart
-    @cart.update(total: sum)
-  end
 end

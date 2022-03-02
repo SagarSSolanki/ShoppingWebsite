@@ -10,28 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2022_02_23_154129) do
-=======
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2022_02_22_184428) do
-=======
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2022_02_17_202121) do
->>>>>>> 8432aaba1079322be43561db543662d4a4c97b6d
->>>>>>> a101ee809b3ebc6e9dd3d434b8039b6b995a4534
+ActiveRecord::Schema.define(version: 2022_03_02_070801) do
 
-=======
-ActiveRecord::Schema.define(version: 2022_02_10_213706) do
-  
->>>>>>> 2f6376b1181f7ec4ef6a6621b7965f26b1efaf93
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> a101ee809b3ebc6e9dd3d434b8039b6b995a4534
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -60,11 +43,6 @@ ActiveRecord::Schema.define(version: 2022_02_10_213706) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 8432aaba1079322be43561db543662d4a4c97b6d
->>>>>>> a101ee809b3ebc6e9dd3d434b8039b6b995a4534
   create_table "addresses", force: :cascade do |t|
     t.string "area"
     t.string "city"
@@ -76,7 +54,6 @@ ActiveRecord::Schema.define(version: 2022_02_10_213706) do
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
-<<<<<<< HEAD
   create_table "cartitems", force: :cascade do |t|
     t.integer "quantity"
     t.bigint "cart_id", null: false
@@ -88,23 +65,36 @@ ActiveRecord::Schema.define(version: 2022_02_10_213706) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer "total"
+    t.integer "total", default: 0
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 8432aaba1079322be43561db543662d4a4c97b6d
->>>>>>> a101ee809b3ebc6e9dd3d434b8039b6b995a4534
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orderitems", force: :cascade do |t|
+    t.integer "quantity"
+    t.bigint "order_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_orderitems_on_order_id"
+    t.index ["product_id"], name: "index_orderitems_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "total"
+    t.string "address"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -117,14 +107,6 @@ ActiveRecord::Schema.define(version: 2022_02_10_213706) do
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 2f6376b1181f7ec4ef6a6621b7965f26b1efaf93
->>>>>>> 8432aaba1079322be43561db543662d4a4c97b6d
->>>>>>> a101ee809b3ebc6e9dd3d434b8039b6b995a4534
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
@@ -132,26 +114,14 @@ ActiveRecord::Schema.define(version: 2022_02_10_213706) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-<<<<<<< HEAD
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "users"
   add_foreign_key "cartitems", "carts"
   add_foreign_key "cartitems", "products"
   add_foreign_key "carts", "users"
+  add_foreign_key "orderitems", "orders"
+  add_foreign_key "orderitems", "products"
+  add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
-=======
-<<<<<<< HEAD
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "addresses", "users"
-  add_foreign_key "products", "categories"
-=======
-  add_foreign_key "addresses", "users"
-<<<<<<< HEAD
-  add_foreign_key "products", "categories"
-=======
->>>>>>> 2f6376b1181f7ec4ef6a6621b7965f26b1efaf93
->>>>>>> 8432aaba1079322be43561db543662d4a4c97b6d
->>>>>>> a101ee809b3ebc6e9dd3d434b8039b6b995a4534
 end
