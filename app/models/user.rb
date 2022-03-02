@@ -9,6 +9,6 @@ class User < ApplicationRecord
   private
 
   def create_cart
-    Cart.create({total: 0, user_id: self.id})
+    Cart.create({user_id: self.id})
   end
 end
