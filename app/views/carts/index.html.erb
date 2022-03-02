@@ -1,0 +1,17 @@
+<h2> <%= flash[:notice] %></h2>
+
+<h1>Total: <%= @cart.total%> </h1>
+<br>
+<h2>Items</h2>
+
+<% @cart.cartitems.each do |item| %>
+  <%= image_tag item.product.image %>
+  <a>
+    <strong>Product:</strong> <%= item.product.name %>
+    <strong>Price:</strong> <%= item.product.price %>
+    <strong>Quantity:</strong> <%= item.quantity %>
+    <%= button_to "Add More", cartitem_path(id: item.id), method: :patch %>
+    <%= button_to "Remove Product", cartitem_path(id: item.id), method: :delete %>
+  </a>
+  <br>
+<% end %>
