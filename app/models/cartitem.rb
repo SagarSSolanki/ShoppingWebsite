@@ -7,13 +7,8 @@ class Cartitem < ApplicationRecord
   private 
 
   def total_update
-    sum = 0
-    
-    self.cart.cartitems.each do |item|
-      sum = sum + (item.product.price * item.quantity)
-    end
-    @cart = self.cart
-    @cart.update(total: sum)
+    sum = self.cart.cartitems.sum { |item| item.product.price * item.quantity }
+    self.cart.update(total: sum)
   end
 
   def stock_quantity 

@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_one :cart
   
   validates :email, presence: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: "Invalid Email!" }
-  after_commit :create_cart, only: %i(create)
+  after_create :create_cart
   private
 
   def create_cart
