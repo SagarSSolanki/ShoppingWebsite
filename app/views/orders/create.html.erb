@@ -1,1 +1,11 @@
 <h1> Order Placed </h1>
+<h2>Total = <%= @order.total%> </h2>
+<br>
+<% @order.orderitems.each do |item| %>
+  <a>
+    <strong>Product:</strong> <%= item.product.name %>
+    <strong>Price:</strong> <%= item.product.price %>
+    <strong>Quantity:</strong> <%= item.quantity %>
+  </a>
+  <br>
+<% end %>

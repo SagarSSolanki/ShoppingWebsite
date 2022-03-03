@@ -16,4 +16,4 @@
   <br>
 <% end %>
 
-<%= button_to "Place Order", orders_path, method: :post %>
+<%= button_to "Place Order", orders_path, method: :post if @cart.total > 0 %>
