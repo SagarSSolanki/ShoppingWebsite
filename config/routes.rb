@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   resources :carts, only: %i(index)
 
   resources :cartitems, only: %i(update create destroy)
+<<<<<<< HEAD
 
   resources :orders, only: %i(index create)
+=======
+>>>>>>> ef64d4f6882bbede6e56ee9388d42ddb33d9355d
 end
