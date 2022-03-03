@@ -2,18 +2,21 @@ class OrdersController < ApplicationController
   before_action :is_loggedin, only: %i(index create)
   before_action :availability_check, only: %i(create)
 
-  def index; end
+  def index
+    @orders = current_user.orders.all.includes(:orderitems)
+  end
     
   def create
-    @order = current_user.orders.create({total: current_user.cart.total})
+    @cart = current_user.cart 
+    @order = current_user.orders.create(total: current_user.cart.total)
 
-    current_user.cart.cartitems.each do |item|
-      @order.orderitems.create({quantity: item.quantity, product_id: item.product_id})
+    @cart.cartitems.each do |item|
+      @order.orderitems.create(quantity: item.quantity, product_id: item.product_id)
       item.product.update(stock: item.product.stock - item.quantity)
       item.destroy
     end
 
-    current_user.cart.update(total: 0)
+    @cart.update(total: 0)
   end
 
   private
