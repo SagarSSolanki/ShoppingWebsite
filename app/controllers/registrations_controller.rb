@@ -12,7 +12,7 @@ class RegistrationsController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id 
-      UserMailer.with(user: @user).welcome_email.deliver_now 
+      SendMailJob.perform_later(@user) 
       redirect_to root_path, notice: "Successfully Created Account"
     else
       render :new
