@@ -1,0 +1,15 @@
+<h1> Your Orders </h1>
+
+<% @orders.each do |order| %>
+  <%= order.created_at %>
+  <br>
+  <% order.orderitems.each do |item| %>
+    <strong>Product: </strong> <%= item.product.name %>
+    <strong>Quantity: </strong> <%= item.quantity %>
+    <br>
+  <% end %>
+  <br>
+  <strong>Total: </strong><%= order.total %>
+  <br>
+  <br>
+<% end %>
